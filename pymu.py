@@ -1,8 +1,12 @@
 import numpy as np
 
-class PyMU:
-    """A placeholder for now"""
-    #Insert Variables here
+class Pymu:
+    """Uses the user defined filtering for IMU
+
+    Args:
+    filterType(str): String naming desired filter name
+    timestep(float): timestep the filter should operate
+    """
     angle = np.array([0,0,0])
     def __init__(self,filterType,timestep):
         self.filtType = filterType
@@ -17,11 +21,10 @@ class PyMU:
 
     def comprun(self):
         print('Inside comprun')
+        gAngle =5
         self.angle += np.array(self.data)
         print('Calculated angle')
         print(self.angle)
-
-
 
     def mahorun(self):
         print('Inside mahorun')
