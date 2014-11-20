@@ -7,10 +7,11 @@ class Pymu:
     filterType(str): String naming desired filter name
     timestep(float): timestep the filter should operate
     """
-    angle = np.array([0,0,0])
+    angle = np.array([0.0,0.0,0.0])
     def __init__(self,filterType,timestep):
         self.filtType = filterType
         self.timestep = timestep
+        self.compPara = {'gyroConst':0.98}
 
     def update(self,data):
         self.data = data
@@ -21,8 +22,9 @@ class Pymu:
 
     def comprun(self):
         print('Inside comprun')
-        gAngle =5
-        self.angle += np.array(self.data)
+        gAngle = np.array(self.data[0:3])*self.timestep
+        accAngle = np.array(self.data[3:6])
+        self.angle += self.compPara['gyroConst']*gAngle
         print('Calculated angle')
         print(self.angle)
 
